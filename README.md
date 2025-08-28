@@ -51,6 +51,47 @@ if err := service.Record(payload); err != nil {
 }
 ```
 
+### Contoh secara keseluruhan
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/ojipoji/recordtocsv"
+)
+
+type BookingRecord struct {
+	ID       string `json:"id"`
+	Request  string `json:"request"`
+	Response string `json:"response"`
+}
+
+func main() {
+	// Inisialisasi service
+	service := recordtocsv.NewRecordToCSV(
+		"files/record",                     // Direktori tujuan
+		"booking_record",                   // Nama file dasar
+		[]string{"id", "request", "response"}, // Header CSV
+		"daily",                            // Tipe record: daily | monthly | yearly
+	)
+
+	// Data yang ingin dicatat
+	record := BookingRecord{
+		ID:       "123",
+		Request:  `{"room":"Deluxe"}`,
+		Response: `{"status":"confirmed"}`,
+	}
+
+	// Simpan ke CSV
+	if err := service.Record(record); err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Record berhasil dicatat ke CSV!")
+}
+```
+
 ### Struktur File yang Dihasilkan
 
 ```bash

@@ -109,7 +109,8 @@ id,request,response
 Jika kamu menggunakan monthly, maka nama file akan menjadi:
 
 ```bash
-files/record/agoda_booking_record_2025_08.csv
+files/record/
+└── booking_record_2025_08.csv
 ```
 
 ---
